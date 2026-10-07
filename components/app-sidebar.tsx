@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { BookOpen, Code2, Dumbbell, Home, Wrench } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -10,16 +13,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-const items = [
-  { title: "Inicio", url: "/", icon: Home },
-  { title: "Frameworks", url: "/frameworks", icon: Code2 },
-  { title: "Herramientas", url: "/herramientas", icon: Wrench },
-  { title: "Para practicar", url: "/practicar", icon: Dumbbell },
-  { title: "Rutas de aprendizaje", url: "/rutas", icon: BookOpen },
-];
+import { categorias } from "@/lib/categorias";
 
 export function AppSidebar() {
+  const pathname = usePathname();
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -27,16 +25,31 @@ export function AppSidebar() {
           <SidebarGroupLabel>Devteca</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/"}>
+                  <Link href="/">
+                    <Home />
+                    <span>Inicio</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              {Object.entries(categorias).map(([clave, categoria]) => {
+                const Icono = categoria.icono;
+                return (
+                  <SidebarMenuItem key={clave}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === `/${clave}`}
+                    >
+                      <Link href={`/${clave}`}>
+                        <Icono />
+                        <span>{categoria.titulo}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
