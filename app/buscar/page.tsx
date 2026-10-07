@@ -3,6 +3,8 @@ import { buscarRecursos } from "@/lib/recursos";
 
 type Props = { searchParams: Promise<{ q?: string }> };
 
+export const metadata = { robots: { index: false } };
+
 export default async function BuscarPage({ searchParams }: Props) {
   const { q = "" } = await searchParams;
   const resultados = await buscarRecursos(q);
