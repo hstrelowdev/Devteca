@@ -71,6 +71,21 @@ const recursos: Recurso[] = [
   },
 ];
 
+function normalizar(texto: string) {
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+export async function buscarRecursos(consulta: string): Promise<Recurso[]> {
+  const q = normalizar(consulta.trim());
+  if (!q) return [];
+  return recursos.filter((r) =>
+    normalizar(`${r.nombre} ${r.descripcion}`).includes(q),
+  );
+}
+
 export async function getRecursos(): Promise<Recurso[]> {
   return recursos;
 }
