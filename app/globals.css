@@ -48,83 +48,94 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
+:root,
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #0a0612;
+  --foreground: #e8e6ff;
+
+  --card: #120a22;
+  --card-foreground: #e8e6ff;
+  --popover: #120a22;
+  --popover-foreground: #e8e6ff;
+
+  --primary: #ff2bd6;
+  --primary-foreground: #0a0612;
+  --secondary: #1a0f33;
+  --secondary-foreground: #c9b8ff;
+  --muted: #160d2b;
+  --muted-foreground: #9a8cc4;
+  --accent: #2a1550;
+  --accent-foreground: #ffffff;
+
+  --destructive: #ff3860;
+
+  --border: #3b2268;
+  --input: #2a1550;
+  --ring: #00f0ff;
+
+  --chart-1: #ff2bd6;
+  --chart-2: #00f0ff;
+  --chart-3: #8b5cf6;
+  --chart-4: #f9f002;
+  --chart-5: #ff7a00;
+
+  --radius: 0.25rem;
+
+  --sidebar: #0d0719;
+  --sidebar-foreground: #e8e6ff;
+  --sidebar-primary: #ff2bd6;
+  --sidebar-primary-foreground: #0a0612;
+  --sidebar-accent: #24104a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2a1550;
+  --sidebar-ring: #00f0ff;
+
+  /* variables propias para los brillos */
+  --neon-magenta: #ff2bd6;
+  --neon-cyan: #00f0ff;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+/* Fondo con resplandores de color */
+body {
+  background-image:
+    radial-gradient(
+      60rem 40rem at 10% -10%,
+      rgb(255 43 214 / 0.15),
+      transparent 60%
+    ),
+    radial-gradient(
+      50rem 40rem at 100% 0%,
+      rgb(0 240 255 / 0.12),
+      transparent 60%
+    );
+  background-attachment: fixed;
+}
+
+/* Título con degradado magenta → cian */
+.neon-gradient {
+  background: linear-gradient(90deg, var(--neon-magenta), var(--neon-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Texto con resplandor */
+.neon-text {
+  color: var(--neon-cyan);
+  text-shadow:
+    0 0 8px rgb(0 240 255 / 0.7),
+    0 0 24px rgb(0 240 255 / 0.4);
+}
+
+/* Tarjeta que se ilumina al pasar el cursor */
+.neon-card {
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+.neon-card:hover {
+  border-color: var(--neon-magenta);
+  box-shadow:
+    0 0 0 1px var(--neon-magenta),
+    0 0 24px rgb(255 43 214 / 0.35);
 }

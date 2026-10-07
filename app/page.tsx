@@ -14,7 +14,9 @@ export default async function Home() {
   return (
     <div className="mx-auto max-w-5xl">
       <section className="py-10">
-        <h1 className="text-4xl font-bold tracking-tight">Devteca</h1>
+        <h1 className="neon-gradient text-4xl font-bold tracking-tight">
+          Devteca
+        </h1>
         <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
           Biblioteca de recursos para developers: frameworks, herramientas,
           sitios y ejercicios para practicar, todo en un solo lugar.
@@ -30,7 +32,7 @@ export default async function Home() {
 
           return (
             <Link key={clave} href={`/${clave}`}>
-              <Card className="h-full transition-colors hover:bg-accent">
+              <Card className="neon-card h-full">
                 <CardHeader>
                   <Icono className="size-6" />
                   <CardTitle>{categoria.titulo}</CardTitle>
