@@ -1,19 +1,4 @@
-export type TipoRecurso =
-  | "framework"
-  | "herramienta"
-  | "practica"
-  | "ia"
-  | "sitio";
-
-export type Recurso = {
-  slug: string;
-  nombre: string;
-  tipo: TipoRecurso;
-  descripcion: string;
-  url: string;
-  imagenUrl?: string | null;
-  extra?: Record<string, unknown>;
-};
+import type { Recurso, TipoRecurso } from "./tipos";
 
 const recursos: Recurso[] = [
   // ── Frameworks ──

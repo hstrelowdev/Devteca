@@ -10,22 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Recurso, TipoRecurso } from "@/lib/recursos";
 
-const etiquetaTipo: Record<TipoRecurso, string> = {
-  framework: "Framework",
-  herramienta: "Herramienta",
-  practica: "Práctica",
-  ia: "IA",
-  sitio: "Sitio",
-};
+import { etiquetasTipo, type Recurso } from "@/lib/tipos";
 
 export function ResourceCard({ recurso }: { recurso: Recurso }) {
   return (
     <Card className="flex flex-col">
       <CardHeader>
         <Badge variant="secondary" className="w-fit">
-          {etiquetaTipo[recurso.tipo]}
+          {etiquetasTipo[recurso.tipo]}
         </Badge>
         <CardTitle>
           <Link href={`/recursos/${recurso.slug}`} className="hover:underline">

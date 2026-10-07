@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import type { Recurso, TipoRecurso } from "../lib/recursos";
+import type { Recurso, TipoRecurso } from "../lib/tipos";
 
 const url = process.env.POSTGRES_URL ?? process.env.DATABASE_URL;
 if (!url) throw new Error("Falta POSTGRES_URL o DATABASE_URL en .env.local");

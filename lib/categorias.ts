@@ -6,7 +6,7 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
-import type { TipoRecurso } from "@/lib/recursos";
+import type { TipoRecurso } from "@/lib/tipos";
 
 export type Categoria = {
   tipo: TipoRecurso;
