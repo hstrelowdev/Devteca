@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const recurso = await getRecursoPorSlug(slug);
   if (!recurso) return {};
   return {
-    title: `${recurso.nombre} | Devteca`,
+    title: `${recurso.nombre}`,
     description: recurso.descripcion,
   };
 }

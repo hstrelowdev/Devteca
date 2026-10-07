@@ -140,3 +140,8 @@ body {
     0 0 0 1px var(--neon-magenta),
     0 0 24px rgb(255 43 214 / 0.35);
 }
+@media (prefers-reduced-motion: reduce) {
+  .neon-card {
+    transition: none;
+  }
+}

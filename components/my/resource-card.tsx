@@ -30,10 +30,9 @@ export function ResourceCard({ recurso }: { recurso: Recurso }) {
       <CardContent className="flex-1" />
       <CardFooter>
         <Button asChild variant="outline" size="sm">
-          <a href={recurso.url} target="_blank" rel="noopener noreferrer">
-            Visitar
-            <ExternalLink />
-          </a>
+          Visitar
+          <span className="sr-only"> (se abre en una pestaña nueva)</span>
+          <ExternalLink />
         </Button>
       </CardFooter>
     </Card>

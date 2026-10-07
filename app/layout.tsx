@@ -18,16 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Devteca",
+  title: { default: "Devteca", template: "%s | Devteca" },
   description: "Biblioteca de recursos para developers",
-  openGraph: {
-    title: "Devteca",
-    description: "Biblioteca de recursos para developers",
-    type: "website",
-  },
 };
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html

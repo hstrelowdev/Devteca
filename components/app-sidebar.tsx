@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Plus } from "lucide-react";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,11 +12,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { categorias } from "@/lib/categorias";
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
+  const cerrar = () => setOpenMobile(false);
 
   return (
     <Sidebar>
@@ -27,7 +30,7 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={pathname === "/"}>
-                  <Link href="/">
+                  <Link href="/" onClick={cerrar}>
                     <Home />
                     <span>Inicio</span>
                   </Link>
@@ -42,7 +45,7 @@ export function AppSidebar() {
                       asChild
                       isActive={pathname === `/${clave}`}
                     >
-                      <Link href={`/${clave}`}>
+                      <Link href={`/${clave}`} onClick={cerrar}>
                         <Icono />
                         <span>{categoria.titulo}</span>
                       </Link>
@@ -50,14 +53,6 @@ export function AppSidebar() {
                   </SidebarMenuItem>
                 );
               })}
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === "/proponer"}>
-                  <Link href="/proponer">
-                    <Plus />
-                    <span>Proponer recurso</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

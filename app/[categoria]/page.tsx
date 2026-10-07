@@ -20,7 +20,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { categoria } = await params;
   const config = categorias[categoria];
-  return config ? { title: `${config.titulo} | Devteca` } : {};
+  return config ? { title: `${config.titulo} ` } : {};
 }
 export default async function CategoriaPage({ params, searchParams }: Props) {
   const { categoria } = await params;
