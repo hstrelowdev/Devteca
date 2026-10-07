@@ -49,7 +49,6 @@ Hay muchísimos recursos para aprender y trabajar como developer, pero están di
 - [ ] Leer los recursos desde PostgreSQL.
 - [ ] Formulario para proponer recursos, con moderación previa.
 - [ ] Filtros por tipo en el buscador.
-- [ ] Rutas de aprendizaje que conecten recursos entre sí.
 
 ## Cómo ejecutarlo en local
 
