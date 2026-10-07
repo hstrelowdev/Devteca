@@ -2,7 +2,7 @@
 
 Biblioteca de recursos para developers: frameworks, herramientas, sitios de consulta y plataformas para practicar, reunidos en un solo lugar y con buscador.
 
-🔗 **Demo:** https://TU-PROYECTO.vercel.app
+🔗 **Demo:** https://devteca-ten.vercel.app/
 
 ![Captura de Devteca](public/image.png)
 
