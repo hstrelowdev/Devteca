@@ -55,7 +55,8 @@
 
   --card: #120a22;
   --card-foreground: #e8e6ff;
-  --popover: #120a22;
+  --popover: #1a0f33;
+
   --popover-foreground: #e8e6ff;
 
   --primary: #ff2bd6;
@@ -64,7 +65,7 @@
   --secondary-foreground: #c9b8ff;
   --muted: #160d2b;
   --muted-foreground: #9a8cc4;
-  --accent: #2a1550;
+  --accent: #3a1d73;
   --accent-foreground: #ffffff;
 
   --destructive: #ff3860;

@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { proponer, type EstadoForm } from "@/app/proponer/actions";
 import { TIPOS, etiquetasTipo } from "@/lib/tipos";
 
@@ -34,22 +41,18 @@ export function ProponerForm() {
 
       <div className="space-y-2">
         <Label htmlFor="tipo">Tipo</Label>
-        <select
-          id="tipo"
-          name="tipo"
-          required
-          defaultValue=""
-          className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
-        >
-          <option value="" disabled>
-            Elige un tipo
-          </option>
-          {TIPOS.map((t) => (
-            <option key={t} value={t}>
-              {etiquetasTipo[t]}
-            </option>
-          ))}
-        </select>
+        <Select name="tipo">
+          <SelectTrigger id="tipo" className="w-full">
+            <SelectValue placeholder="Elige un tipo" />
+          </SelectTrigger>
+          <SelectContent>
+            {TIPOS.map((t) => (
+              <SelectItem key={t} value={t}>
+                {etiquetasTipo[t]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         {error("tipo") && (
           <p className="text-sm text-destructive">{error("tipo")}</p>
         )}
