@@ -36,6 +36,17 @@ async function main() {
     CHECK (estado IN ('pendiente', 'aprobado', 'rechazado'))
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id SERIAL PRIMARY KEY,
+      usuario TEXT NOT NULL UNIQUE,
+      password_hash TEXT NOT NULL,
+      rol TEXT NOT NULL DEFAULT 'admin',
+      creado_en TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `;
+
+  await sql`ALTER TABLE usuarios ENABLE ROW LEVEL SECURITY`;
   await sql`CREATE INDEX IF NOT EXISTS recursos_estado_idx ON recursos (estado)`;
   await sql`CREATE INDEX IF NOT EXISTS recursos_tipo_idx ON recursos (tipo_id)`;
 
