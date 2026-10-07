@@ -11,7 +11,7 @@ export type Recurso = {
   tipo: TipoRecurso;
   descripcion: string;
   url: string;
-  imagenUrl?: string;
+  imagenUrl?: string | null;
   extra?: Record<string, unknown>;
 };
 
