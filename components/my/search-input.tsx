@@ -18,7 +18,13 @@ export function SearchInput() {
     timer.current = setTimeout(() => {
       if (!valor && pathname !== "/buscar") return;
 
-      const url = valor ? `/buscar?q=${encodeURIComponent(valor)}` : "/buscar";
+      const por = pathname === "/buscar" ? searchParams.get("por") : null;
+      const params = new URLSearchParams();
+      if (valor) params.set("q", valor);
+      if (por) params.set("por", por);
+      const qs = params.toString();
+      const url = qs ? `/buscar?${qs}` : "/buscar";
+
       if (pathname === "/buscar") router.replace(url);
       else router.push(url);
     }, 300);
