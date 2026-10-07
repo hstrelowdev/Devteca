@@ -29,11 +29,17 @@ export default async function CategoriaPage({ params }: Props) {
     <div>
       <h1 className="text-2xl font-bold">{config.titulo}</h1>
       <p className="mt-1 text-muted-foreground">{config.descripcion}</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {recursos.map((r) => (
-          <ResourceCard key={r.slug} recurso={r} />
-        ))}
-      </div>
+      {recursos.length === 0 ? (
+        <p className="mt-6 text-muted-foreground">
+          Aún no hay recursos en esta categoría. ¡Pronto habrá más!
+        </p>
+      ) : (
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {recursos.map((r) => (
+            <ResourceCard key={r.slug} recurso={r} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

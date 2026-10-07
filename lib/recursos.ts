@@ -17,57 +17,63 @@ export type Recurso = {
 
 const recursos: Recurso[] = [
   {
-    slug: "nextjs",
-    nombre: "Next.js",
+    slug: "react",
+    nombre: "React",
     tipo: "framework",
-    descripcion: "Framework de React para construir sitios y aplicaciones web.",
-    url: "https://nextjs.org",
+    descripcion:
+      "Librería de JavaScript para construir interfaces con componentes.",
+    url: "https://react.dev",
   },
   {
-    slug: "tailwindcss",
-    nombre: "Tailwind CSS",
-    tipo: "framework",
-    descripcion: "Framework de CSS basado en clases utilitarias.",
-    url: "https://tailwindcss.com",
-  },
-  {
-    slug: "shadcn-ui",
-    nombre: "shadcn/ui",
+    slug: "vite",
+    nombre: "Vite",
     tipo: "herramienta",
     descripcion:
-      "Componentes de interfaz que copias a tu proyecto y personalizas.",
-    url: "https://ui.shadcn.com",
+      "Herramienta de desarrollo rápida para proyectos web modernos.",
+    url: "https://vite.dev",
   },
   {
-    slug: "roadmap-sh",
-    nombre: "roadmap.sh",
+    slug: "caniuse",
+    nombre: "Can I use",
+    tipo: "herramienta",
+    descripcion: "Consulta qué navegadores soportan cada función de la web.",
+    url: "https://caniuse.com",
+  },
+  {
+    slug: "mdn",
+    nombre: "MDN Web Docs",
     tipo: "sitio",
-    descripcion:
-      "Rutas visuales de aprendizaje para distintas áreas del desarrollo.",
-    url: "https://roadmap.sh",
+    descripcion: "Documentación de referencia para HTML, CSS y JavaScript.",
+    url: "https://developer.mozilla.org",
   },
   {
-    slug: "devdocs",
-    nombre: "DevDocs",
-    tipo: "sitio",
-    descripcion:
-      "Documentación de muchas tecnologías en un solo lugar con buscador.",
-    url: "https://devdocs.io",
+    slug: "freecodecamp",
+    nombre: "freeCodeCamp",
+    tipo: "practica",
+    descripcion: "Cursos y proyectos gratuitos para aprender a programar.",
+    url: "https://www.freecodecamp.org",
   },
   {
-    slug: "exercism",
-    nombre: "Exercism",
+    slug: "codewars",
+    nombre: "Codewars",
     tipo: "practica",
     descripcion:
-      "Ejercicios de programación en muchos lenguajes, con mentoría.",
-    url: "https://exercism.org",
+      "Retos de código (katas) para mejorar tu lógica y tu lenguaje.",
+    url: "https://www.codewars.com",
   },
   {
-    slug: "frontend-mentor",
-    nombre: "Frontend Mentor",
-    tipo: "practica",
-    descripcion: "Retos de frontend basados en diseños reales para practicar.",
-    url: "https://www.frontendmentor.io",
+    slug: "ollama",
+    nombre: "Ollama",
+    tipo: "ia",
+    descripcion: "Ejecuta modelos de lenguaje en tu propio equipo.",
+    url: "https://ollama.com",
+  },
+  {
+    slug: "github-copilot",
+    nombre: "GitHub Copilot",
+    tipo: "ia",
+    descripcion: "Asistente de IA que sugiere código dentro de tu editor.",
+    url: "https://github.com/features/copilot",
   },
 ];
 

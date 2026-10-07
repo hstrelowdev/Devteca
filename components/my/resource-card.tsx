@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -26,7 +27,11 @@ export function ResourceCard({ recurso }: { recurso: Recurso }) {
         <Badge variant="secondary" className="w-fit">
           {etiquetaTipo[recurso.tipo]}
         </Badge>
-        <CardTitle>{recurso.nombre}</CardTitle>
+        <CardTitle>
+          <Link href={`/recursos/${recurso.slug}`} className="hover:underline">
+            {recurso.nombre}
+          </Link>
+        </CardTitle>
         <CardDescription>{recurso.descripcion}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1" />
