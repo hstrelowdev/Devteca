@@ -26,7 +26,7 @@ const recursos: Recurso[] = [
   {
     slug: "tailwindcss",
     nombre: "Tailwind CSS",
-    tipo: "herramienta",
+    tipo: "framework",
     descripcion: "Framework de CSS basado en clases utilitarias.",
     url: "https://tailwindcss.com",
   },
