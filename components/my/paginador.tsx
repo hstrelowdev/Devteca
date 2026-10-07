@@ -1,6 +1,14 @@
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import Link from "next/link";
 import { OPCIONES_POR_PAGINA, POR_PAGINA_DEFECTO } from "@/lib/paginacion";
 
 type Props = {
@@ -55,6 +63,8 @@ export function Paginador({
 
   const desde = (pagina - 1) * por + 1;
   const hasta = Math.min(pagina * por, total);
+  const esPrimera = pagina <= 1;
+  const esUltima = pagina >= totalPaginas;
 
   return (
     <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -62,60 +72,48 @@ export function Paginador({
         Mostrando {desde}–{hasta} de {total}
       </p>
 
-      <nav
-        aria-label="Paginación"
-        className="flex flex-wrap items-center gap-1"
-      >
-        {pagina > 1 ? (
-          <Button asChild variant="outline" size="sm">
-            <Link href={href(base, extra, pagina - 1, por)}>
-              <ChevronLeft />
-              Anterior
-            </Link>
-          </Button>
-        ) : (
-          <Button variant="outline" size="sm" disabled>
-            <ChevronLeft />
-            Anterior
-          </Button>
-        )}
+      <Pagination aria-label="Paginación" className="mx-0 w-auto">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href={href(base, extra, Math.max(1, pagina - 1), por)}
+              text="Anterior"
+              aria-disabled={esPrimera}
+              tabIndex={esPrimera ? -1 : undefined}
+              className={
+                esPrimera ? "pointer-events-none opacity-50" : undefined
+              }
+            />
+          </PaginationItem>
 
-        {rango(pagina, totalPaginas).map((n, i) =>
-          n === "…" ? (
-            <span key={`e${i}`} className="px-2 text-muted-foreground">
-              …
-            </span>
-          ) : (
-            <Button
-              key={n}
-              asChild
-              size="sm"
-              variant={n === pagina ? "default" : "ghost"}
-            >
-              <Link
-                href={href(base, extra, n, por)}
-                aria-current={n === pagina ? "page" : undefined}
-              >
-                {n}
-              </Link>
-            </Button>
-          ),
-        )}
+          {rango(pagina, totalPaginas).map((n, i) => (
+            <PaginationItem key={n === "…" ? `e${i}` : n}>
+              {n === "…" ? (
+                <PaginationEllipsis />
+              ) : (
+                <PaginationLink
+                  href={href(base, extra, n, por)}
+                  isActive={n === pagina}
+                >
+                  {n}
+                </PaginationLink>
+              )}
+            </PaginationItem>
+          ))}
 
-        {pagina < totalPaginas ? (
-          <Button asChild variant="outline" size="sm">
-            <Link href={href(base, extra, pagina + 1, por)}>
-              Siguiente
-              <ChevronRight />
-            </Link>
-          </Button>
-        ) : (
-          <Button variant="outline" size="sm" disabled>
-            Siguiente
-            <ChevronRight />
-          </Button>
-        )}
-      </nav>
+          <PaginationItem>
+            <PaginationNext
+              href={href(base, extra, Math.min(totalPaginas, pagina + 1), por)}
+              text="Siguiente"
+              aria-disabled={esUltima}
+              tabIndex={esUltima ? -1 : undefined}
+              className={
+                esUltima ? "pointer-events-none opacity-50" : undefined
+              }
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
 
       <div className="flex items-center gap-1 text-sm">
         <span className="mr-1 text-muted-foreground">Por página:</span>
