@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home } from "lucide-react";
+import { Home, Plus } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -50,6 +50,14 @@ export function AppSidebar() {
                   </SidebarMenuItem>
                 );
               })}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/proponer"}>
+                  <Link href="/proponer">
+                    <Plus />
+                    <span>Proponer recurso</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

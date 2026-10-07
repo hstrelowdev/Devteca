@@ -8,6 +8,7 @@ import {
 import { categorias } from "@/lib/categorias";
 import { getRecursos } from "@/lib/recursos";
 
+export const revalidate = 3600;
 export default async function Home() {
   const recursos = await getRecursos();
 
