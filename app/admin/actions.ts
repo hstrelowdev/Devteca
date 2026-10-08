@@ -1,9 +1,5 @@
 "use server";
 
-<<<<<<< ours
-import { z } from "zod";
-import { proponerRecurso } from "@/lib/recursos";
-=======
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -13,7 +9,6 @@ import {
   crearRecurso,
   eliminarRecurso,
 } from "@/lib/recursos";
->>>>>>> theirs
 import { TIPOS } from "@/lib/tipos";
 
 function esUrlHttp(valor: string) {
@@ -45,23 +40,16 @@ export type EstadoForm = {
   errores?: Record<string, string[] | undefined>;
 };
 
-<<<<<<< ours
-export async function proponer(
-  _anterior: EstadoForm,
-  formData: FormData,
-): Promise<EstadoForm> {
-  // Campo trampa: los humanos no lo ven; los bots suelen rellenarlo
-  if (formData.get("web")) {
-    return { ok: true, mensaje: "¡Gracias! Revisaré tu propuesta pronto." };
-  }
-=======
+// Las Server Actions son endpoints públicos: cada una valida la sesión.
+async function haySesion() {
+  return Boolean((await auth())?.user);
+}
+
 export async function guardarRecurso(
   _anterior: EstadoForm,
   formData: FormData,
 ): Promise<EstadoForm> {
-  const session = await auth();
-  if (!session) return { ok: false, mensaje: "No autorizado." };
->>>>>>> theirs
+  if (!(await haySesion())) return { ok: false, mensaje: "No autorizado." };
 
   const resultado = esquema.safeParse(Object.fromEntries(formData));
   if (!resultado.success) {
@@ -73,67 +61,53 @@ export async function guardarRecurso(
   }
 
   try {
-<<<<<<< ours
-    const { ok } = await proponerRecurso(resultado.data);
-=======
     const { ok } = await crearRecurso(resultado.data);
->>>>>>> theirs
     if (!ok) {
-      return {
-        ok: false,
-        mensaje: "Ya existe un recurso con un nombre muy parecido.",
-      };
+      return { ok: false, mensaje: "Ya existe un recurso con ese nombre." };
     }
-<<<<<<< ours
-    return { ok: true, mensaje: "¡Gracias! Revisaré tu propuesta pronto." };
-=======
-    revalidatePath("/", "layout");
-    return { ok: true, mensaje: "Recurso publicado." };
->>>>>>> theirs
   } catch {
     return { ok: false, mensaje: "No se pudo guardar. Inténtalo más tarde." };
   }
+  revalidatePath("/", "layout");
+  redirect("/admin");
 }
-<<<<<<< ours
-=======
 
 export async function editarRecurso(
   _anterior: EstadoForm,
   formData: FormData,
 ): Promise<EstadoForm> {
-  const session = await auth();
-  if (!session) return { ok: false, mensaje: "No autorizado." };
+  if (!(await haySesion())) return { ok: false, mensaje: "No autorizado." };
 
   const slug = String(formData.get("slug") ?? "");
   const resultado = esquema.safeParse(Object.fromEntries(formData));
-  if (!resultado.success) {
+  if (!slug || !resultado.success) {
     return {
       ok: false,
       mensaje: "Revisa los campos marcados.",
-      errores: resultado.error.flatten().fieldErrors,
+      errores: resultado.success
+        ? undefined
+        : resultado.error.flatten().fieldErrors,
     };
   }
 
-  let encontrado = false;
   try {
-    encontrado = (await actualizarRecurso(slug, resultado.data)).ok;
+    const { ok } = await actualizarRecurso(slug, resultado.data);
+    if (!ok) return { ok: false, mensaje: "El recurso ya no existe." };
   } catch {
     return { ok: false, mensaje: "No se pudo guardar. Inténtalo más tarde." };
   }
-  if (!encontrado) return { ok: false, mensaje: "El recurso ya no existe." };
 
   revalidatePath("/", "layout");
-  redirect("/admin"); // fuera del try: redirect lanza una excepción interna
+  redirect("/admin");
 }
 
 export async function eliminarRecursoAction(formData: FormData) {
-  const session = await auth();
-  if (!session) throw new Error("No autorizado");
+  if (!(await haySesion())) return;
 
   const slug = String(formData.get("slug") ?? "");
   if (!slug) return;
 
   await eliminarRecurso(slug);
   revalidatePath("/", "layout");
+  redirect("/admin");
 }
->>>>>>> theirs

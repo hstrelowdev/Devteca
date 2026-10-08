@@ -5,7 +5,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { categorias } from "@/lib/categorias";
-import { getRecursoPorSlug, listarRecursos } from "@/lib/recursos";
+import { obtenerRecurso, listarRecursos } from "@/lib/recursos";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const recurso = await getRecursoPorSlug(slug);
+  const recurso = await obtenerRecurso(slug);
   if (!recurso) return {};
   return {
     title: `${recurso.nombre}`,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function RecursoPage({ params }: Props) {
   const { slug } = await params;
-  const recurso = await getRecursoPorSlug(slug);
+  const recurso = await obtenerRecurso(slug);
   if (!recurso) notFound();
 
   const entrada = Object.entries(categorias).find(

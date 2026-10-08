@@ -12,13 +12,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { proponer, type EstadoForm } from "@/app/proponer/actions";
+import { guardarRecurso, type EstadoForm } from "@/app/admin/actions";
 import { TIPOS, etiquetasTipo } from "@/lib/tipos";
 
 const inicial: EstadoForm = { ok: false, mensaje: "" };
 
-export function ProponerForm() {
-  const [estado, accion, pendiente] = useActionState(proponer, inicial);
+export function RecursoForm() {
+  const [estado, accion, pendiente] = useActionState(guardarRecurso, inicial);
   const error = (campo: string) => estado.errores?.[campo]?.[0];
 
   return (
@@ -66,17 +66,8 @@ export function ProponerForm() {
         )}
       </div>
 
-      {/* Campo trampa anti-spam */}
-      <input
-        name="web"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="hidden"
-      />
-
       <Button type="submit" disabled={pendiente}>
-        {pendiente ? "Enviando..." : "Proponer recurso"}
+        {pendiente ? "Guardando..." : "Guardar recurso"}
       </Button>
 
       {estado.mensaje && (
