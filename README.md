@@ -32,7 +32,7 @@ Hay muchísimos recursos para aprender y trabajar como developer, pero están di
 
 ## Decisiones técnicas
 
-- **Capa de datos desacoplada.** Las páginas no leen los datos directamente: llaman a funciones asíncronas (`getRecursos`, `getRecursoPorSlug`, `buscarRecursos`). Así se puede cambiar el origen de los datos sin tocar la interfaz.
+- **Capa de datos desacoplada.** Las páginas no leen los datos directamente: llaman a funciones asíncronas (`listarRecursos`, `getRecursoPorSlug`, `buscarRecursos`). Así se puede cambiar el origen de los datos sin tocar la interfaz.
 - **Rutas dinámicas.** Una sola ruta `app/[categoria]` atiende todas las categorías, que se definen en un único objeto de configuración. El sidebar y la portada se generan a partir de ese mismo objeto, por lo que añadir una categoría no exige crear páginas nuevas.
 - **Búsqueda en la URL.** El texto buscado vive en `?q=` y no en un estado local, con un pequeño retraso (_debounce_) para no actualizar la URL en cada tecla. Funciona el botón "atrás" y los resultados se pueden compartir.
 - **Componentes separados por origen.** `components/ui` contiene los componentes de shadcn/ui; `components/my` contiene los propios, para no mezclarlos ni perderlos al actualizar la librería.

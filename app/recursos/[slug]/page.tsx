@@ -5,14 +5,14 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { categorias } from "@/lib/categorias";
-import { getRecursoPorSlug, getRecursos } from "@/lib/recursos";
+import { getRecursoPorSlug, listarRecursos } from "@/lib/recursos";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const recursos = await getRecursos();
+  const recursos = await listarRecursos();
   return recursos.map((r) => ({ slug: r.slug }));
 }
 

@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { categorias } from "@/lib/categorias";
-import { getRecursos } from "@/lib/recursos";
+import { listarRecursos } from "@/lib/recursos";
 import { siteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const recursos = await getRecursos();
+  const recursos = await listarRecursos();
 
   return [
     { url: siteUrl },

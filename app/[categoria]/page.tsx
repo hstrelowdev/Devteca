@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ResourceCard } from "@/components/my/resource-card";
 import { categorias } from "@/lib/categorias";
-import { getRecursosPorTipo } from "@/lib/recursos";
+import { listarRecursosPorTipo } from "@/lib/recursos";
 import { Paginador } from "@/components/my/paginador";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 
@@ -28,7 +28,7 @@ export default async function CategoriaPage({ params, searchParams }: Props) {
   const config = categorias[categoria];
   if (!config) notFound();
 
-  const todos = await getRecursosPorTipo(config.tipo);
+  const todos = await listarRecursosPorTipo(config.tipo);
   const { pagina, por } = leerPaginacion(sp);
   const p = paginar(todos, pagina, por);
 

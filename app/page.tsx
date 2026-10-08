@@ -6,11 +6,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { categorias } from "@/lib/categorias";
-import { getRecursos } from "@/lib/recursos";
+import { listarRecursos } from "@/lib/recursos";
 
 export const revalidate = 3600;
 export default async function Home() {
-  const recursos = await getRecursos();
+  const recursos = await listarRecursos();
 
   return (
     <div className="mx-auto max-w-5xl">
