@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ResourceCard } from "@/components/my/resource-card";
+import { ResourceCard } from "@/components/my/ResourceCard";
 import { categorias } from "@/lib/categorias";
 import { listarRecursosPorTipo } from "@/lib/recursos";
 import { Pagination } from "@/components/my/Pagination";

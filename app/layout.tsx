@@ -4,7 +4,7 @@ import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Suspense } from "react";
-import { SearchInput } from "@/components/my/search-input";
+import { SearchInput } from "@/components/my/SearchInput";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

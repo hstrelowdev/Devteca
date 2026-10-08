@@ -1,5 +1,5 @@
 import { Pagination } from "@/components/my/Pagination";
-import { ResourceCard } from "@/components/my/resource-card";
+import { ResourceCard } from "@/components/my/ResourceCard";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 import { buscarRecursos } from "@/lib/recursos";
 
