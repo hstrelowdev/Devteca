@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
-  Pagination,
+  Pagination as PaginationUI,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
@@ -36,7 +36,6 @@ function href(
   return qs ? `${base}?${qs}` : base;
 }
 
-// Ejemplo: 1 … 4 5 6 … 20
 function rango(actual: number, total: number): (number | "…")[] {
   const paginas = new Set([1, total, actual - 1, actual, actual + 1]);
   const orden = [...paginas]
@@ -51,7 +50,7 @@ function rango(actual: number, total: number): (number | "…")[] {
   return resultado;
 }
 
-export function Paginador({
+export function Pagination({
   base,
   extra = {},
   pagina,
@@ -72,7 +71,7 @@ export function Paginador({
         Mostrando {desde}–{hasta} de {total}
       </p>
 
-      <Pagination aria-label="Paginación" className="mx-0 w-auto">
+      <PaginationUI aria-label="Paginación" className="mx-0 w-auto">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
@@ -113,7 +112,7 @@ export function Paginador({
             />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </PaginationUI>
 
       <div className="flex items-center gap-1 text-sm">
         <span className="mr-1 text-muted-foreground">Por página:</span>

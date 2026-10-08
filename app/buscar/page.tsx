@@ -1,5 +1,5 @@
-import { Paginador } from "@/components/my/paginador";
-import { ResourceCard } from "@/components/my/resource-card";
+import { Pagination } from "@/components/my/Pagination";
+import { ResourceCard } from "@/components/my/ResourceCard";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 import { buscarRecursos } from "@/lib/recursos";
 
@@ -36,7 +36,7 @@ export default async function BuscarPage({ searchParams }: Props) {
               <ResourceCard key={r.slug} recurso={r} />
             ))}
           </div>
-          <Paginador base="/buscar" extra={{ q }} {...p} />
+          <Pagination base="/buscar" extra={{ q }} {...p} />
         </>
       )}
     </div>

@@ -4,13 +4,7 @@ import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { eliminarRecursoAction } from "@/app/admin/actions";
 
-export function BotonEliminar({
-  slug,
-  nombre,
-}: {
-  slug: string;
-  nombre: string;
-}) {
+export function BtnDelete({ slug, nombre }: { slug: string; nombre: string }) {
   return (
     <form
       action={eliminarRecursoAction}

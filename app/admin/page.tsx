@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BotonEliminar } from "@/components/my/boton-eliminar";
-import { Paginador } from "@/components/my/paginador";
+import { BtnDelete } from "@/components/my/BtnDelete";
+import { Pagination } from "@/components/my/Pagination";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 import { listarRecursosConEstado } from "@/lib/recursos";
 import { etiquetasTipo } from "@/lib/tipos";
@@ -131,7 +131,7 @@ export default async function AdminPage({ searchParams }: Props) {
                         Editar
                       </Link>
                     </Button>
-                    <BotonEliminar slug={r.slug} nombre={r.nombre} />
+                    <BtnDelete slug={r.slug} nombre={r.nombre} />
                   </div>
                 </td>
               </tr>
@@ -140,7 +140,7 @@ export default async function AdminPage({ searchParams }: Props) {
         </table>
       </div>
 
-      <Paginador base="/admin" {...p} />
+      <Pagination base="/admin" {...p} />
     </div>
   );
 }

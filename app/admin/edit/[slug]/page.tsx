@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { RecursoForm } from "@/components/my/recurso-form";
+import { RecursoForm } from "@/components/my/RecursoForm";
 import { exigirAdmin } from "@/lib/admin";
 import { obtenerRecursoConEstado } from "@/lib/recursos";
 

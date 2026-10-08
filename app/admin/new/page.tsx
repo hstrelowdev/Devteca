@@ -1,4 +1,4 @@
-import { RecursoForm } from "@/components/my/recurso-form";
+import { RecursoForm } from "@/components/my/RecursoForm";
 import { exigirAdmin } from "@/lib/admin";
 
 export const metadata = { title: "Nuevo recurso" };
