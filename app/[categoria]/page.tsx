@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ResourceCard } from "@/components/my/resource-card";
 import { categorias } from "@/lib/categorias";
 import { listarRecursosPorTipo } from "@/lib/recursos";
-import { Paginador } from "@/components/my/paginador";
+import { Pagination } from "@/components/my/Pagination";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 
 type Props = {
@@ -48,7 +48,7 @@ export default async function CategoriaPage({ params, searchParams }: Props) {
               <ResourceCard key={r.slug} recurso={r} />
             ))}
           </div>
-          <Paginador base={`/${categoria}`} {...p} />
+          <Pagination base={`/${categoria}`} {...p} />
         </>
       )}
     </div>

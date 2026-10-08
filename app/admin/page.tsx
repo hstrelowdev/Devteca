@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { BtnDelete } from "@/components/my/BtnDelete";
-import { Paginador } from "@/components/my/paginador";
+import { Pagination } from "@/components/my/Pagination";
 import { leerPaginacion, paginar } from "@/lib/paginacion";
 import { listarRecursosConEstado } from "@/lib/recursos";
 import { etiquetasTipo } from "@/lib/tipos";
@@ -140,7 +140,7 @@ export default async function AdminPage({ searchParams }: Props) {
         </table>
       </div>
 
-      <Paginador base="/admin" {...p} />
+      <Pagination base="/admin" {...p} />
     </div>
   );
 }
