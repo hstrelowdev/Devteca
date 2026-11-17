@@ -77,6 +77,31 @@ Abre [http://localhost:3000](http://localhost:3000). No necesitas configurar la 
    npm run db:seed
 ```
 
+### Mantener la base de datos activa (keep-alive)
+
+Supabase pausa los proyectos del plan gratis cuando detecta poca actividad durante 7 días. Para evitarlo hay un cron de Vercel configurado en `vercel.json` que llama a `/api/keep-alive` una vez al día (a las 09:17 UTC). El endpoint ejecuta tres consultas `SELECT 1` contra Postgres, que cuentan como actividad real y reinician el temporizador.
+
+Para activarlo:
+
+1. Añade `CRON_SECRET` en **Vercel → Project → Settings → Environment Variables** con un valor aleatorio largo (recomendado, aunque no obligatorio). Vercel lo enviará como `Authorization: Bearer <CRON_SECRET>` y el endpoint rechazará llamadas sin ese header.
+2. Haz deploy. Vercel detecta `vercel.json` y crea el cron automáticamente; puedes verlo en **Project → Cron Jobs**.
+3. Comprueba que funciona:
+
+```bash
+curl -i https://devteca-ten.vercel.app/api/keep-alive
+# Debe devolver 200 con {"ok":true,"pings":3,...}
+```
+
+> Si defines `CRON_SECRET`, la llamada manual necesita el header:
+> `curl -H "Authorization: Bearer $CRON_SECRET" https://devteca-ten.vercel.app/api/keep-alive`
+
+Notas:
+
+- El plan Hobby de Vercel permite programar crons con **frecuencia mínima diaria**, que es suficiente para este caso (la hora exacta es aproximada, dentro de una ventana de una hora). Vercel no reintenta automáticamente si una ejecución falla.
+- Es mejor pasar aunque sobre: Supabase recomienda «unas cuantas peticiones a la BD al día», por eso se hacen 3 consultas por ejecución.
+- Si el proyecto ya está pausado, el cron no puede reactivarlo por sí solo: hay que restaurarlo desde el dashboard de Supabase. Una vez activo, el cron evita que vuelva a pausarse.
+- Para dejar de usarlo, elimina la entrada `crons` de `vercel.json`.
+
 ## Estructura
 
 ```
